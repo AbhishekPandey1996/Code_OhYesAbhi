@@ -5,10 +5,10 @@ $Email = $_GET['Email'];
 $Password = $_GET['Password'];
 require_once ('db_connect.php');
 $db = new DB_CONNECT();
-$result_1 = mysql_query("SELECT Email FROM Information WHERE Email = $Email");
-if ($result_1) {
-$result_2 = mysql_query("SELECT Email FROM Information WHERE Email = $Email AND Password = $Password");
-if ($result_2) {
+$result_1 = mysql_query("SELECT Email FROM Information WHERE Email = '$Email'");
+if (!empty($result_1)) {
+$result_2 = mysql_query("SELECT Email FROM Information WHERE Email = '$Email' AND Password = '$Password'");
+if (!empty($result_2)) {
 $response["success"] = 3;
 $response["message"] = "password match";
 echo json_encode($response);
